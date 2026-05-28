@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        input {
+            border: none;
+            border-bottom: 1px solid black;
+        }
+
+        h2 span {
+            background-color: salmon;
+            padding: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <h2 style="text-align: center;text-decoration: underline;text-underline-offset: 8px;"><span>Sports Physical
+            Form</span></h2>
+    <form action="sample.html" method="get">
+        <fieldset>
+            <legend>Athelete Information</legend>
+            <ul>
+                <li><label for="name">Name:</label>
+                    <input type="text" id="name" name="name" placeholder="Enter Your Name" required><br><br>
+                </li>
+                <li><label for="school">School:</label>
+                    <input type="text" id="school" name="school" placeholder="Enter Your School" required><br><br>
+                </li>
+                <li><label for="Sport">Sport:</label>
+                    <input type="text" id="Sport" name="Sport" placeholder="Enter Your Sport" required><br><br>
+                <li><label for="parent">Parent/Guardian:</label>
+                    <input type="text" id="parent" name="parent" placeholder="Enter Parent/Guardian Name"
+                        required><br><br>
+                </li>
+                </li>
+                <li>
+                    <label for="contact">Contact Information:</label>
+                    <input type="number" id="contact" name="contact" placeholder="Enter Contact Number"
+                        required><br><br>
+                </li>
+
+        </fieldset>
+        <br>
+        <fieldset>
+            <legend>Medical History of Athlete</legend>
+            <ul>
+                <li>
+                    <label for="concussion">History of Concussions:</label>
+                    <input type="radio" id="concussion" name="concussion" value="yes" required> Yes
+                    <input type="radio" id="concussion" name="concussion" value="no" required> No<br><br>
+                </li>
+                <li> <label for="surgery">Previous Surgeries:</label>
+                    <input type="text" id="surgery" name="surgery" placeholder="Enter Previous Surgeries"
+                        required><br><br>
+                </li>
+                <li>
+                    <label for="bone">Any Bone Fractures?</label>
+                    <input type="radio" id="bone" name="bone" value="yes" required> Yes
+                    <input type="radio" id="bone" name="bone" value="no" required> No<br><br>
+                </li>
+
+                <li>
+                    <label for="name">Asthma or breathing problems:</label>
+                    <input type="radio" id="yes" name="concussion" value="yes" required />
+                    <label for="yes">Yes</label>
+                    <input type="radio" id="no" name="concussion" value="no" required />
+                    <label for="no">No</label><br /><br />
+                </li>
+
+
+
+            </ul>
+            <br>
+        </fieldset>
+
+        <fieldset>
+            <legend>Fitness Assessment</legend>
+            <table border="1" cellspacing="0" cellpadding="5">
+
+                <tr>
+                    <td><b>Category</b></td>
+                    <td><b>Pass</b></td>
+                    <td><b>Fail</b></td>
+                    <td><b>Comment</b></td>
+                </tr>
+
+                <tr>
+                    <td><b>Cardiovasculer</b></td>
+                    <td><input type="radio" name="cardio" value="pass" required></td>
+                    <td><input type="radio" name="cardio" value="fail" required></td>
+                    <td><input type="text" placeholder="Comment"></td>
+                </tr>
+                <tr>
+                    <td><b>Flexibility</b></td>
+                    <td><input type="radio" name="flexibility" value="pass" required></td>
+                    <td><input type="radio" name="flexibility" value="fail" required></td>
+                    <td><input type="text" placeholder="Comment"></td>
+                </tr>
+                <tr>
+                    <td><b>Strength</b></td>
+                    <td><input type="radio" name="strength" value="pass" required></td>
+                    <td><input type="radio" name="strength" value="fail" required></td>
+                    <td><input type="text" placeholder="Comment"></td>
+                </tr>
+                <tr>
+                    <td><b>Endurance</b></td>
+                    <td><input type="radio" name="endurance" value="pass" required></td>
+                    <td><input type="radio" name="endurance" value="fail" required></td>
+                    <td><input type="text" placeholder="Comment"></td>
+                </tr>
+
+
+            </table>
+        </fieldset>
+        <fieldset>
+            <legend>Doctor's Recommendation for Sports Participation</legend>
+            <ul>
+                <li>
+                    <label for="status">Cleared for Sports:</label>
+                    <input type="radio" id="status" name="status" value="yes" required> Yes
+                    <input type="radio" id="status" name="status" value="no" required> No<br><br>
+                </li>
+                <li>
+                    <label for="restrictions">If not cleared, reason?</label>
+                    <input type="text" id="restrictions" name="restrictions" placeholder="Enter Any Restrictions"
+                        required><br><br>
+                </li>
+                <li>
+                    <label for="signature">Signature</label>
+                    <input type="text" id="signature" name="signature" placeholder="Enter Your Signature" required>
+                </li>
+
+            </ul>
+
+        </fieldset>
+        <fieldset>
+            <legend>Date/time</legend>
+            <ul>
+                <li>
+                    <label for="date">Date</label>
+                    <input type="date" id="date" name="date">
+                </li>
+                <li>
+                    <label for="time">Time</label>
+                    <input type="time" id="time" name="time">
+                </li>
+            </ul>
+        </fieldset>
+        <fieldset>
+            <legend>
+                Textarea
+            </legend>
+            <ul>
+                <li>
+                    <p>Summary of your last Opertion</p>
+            <textarea name="summary" id="summary" cols="30" rows="05" placeholder="Enter Summary of your last Operation"></textarea>
+                </li>
+            </ul>
+        </fieldset>
+        <fieldset>
+            <legend>
+                <label for="medical_report">Drop your last Medical Report:</label>
+            </legend>
+            <input type="file" name="medical_report" id="medical_report" accept=".pdf" required style="border: none; margin-left: 10px;">
+        </fieldset>
+
+        <fieldset>
+            <legend>
+                chceckbox/Select/Number
+            </legend>
+            <ul>
+                <li>
+                    <input type="checkbox" id="agree" name="agree" required>
+                    <label for="agree">I agree to the terms and conditions</label><br><br>
+                </li>
+                <li>
+                    <label for="select">Select your city</label>
+                    <select id="select" name="select" required>
+                        <option value="punjab">rajkot</option>
+                        <option value="mumbai">mumbai</option>
+                        <option value="delhi">delhi</option>
+                        <option value="mp">mp</option>
+                        <option value="rajasthan"></option>
+                    </select><br><br>
+                </li>
+                <li>
+                    <label for="number">Enter a number:</label>
+                    <input type="number" id="number" name="number" placeholder="Enter a number" required><br><br>
+                </li>
+        </fieldset>
+            
+        <div style="text-align: center; margin: 20px 0;">
+            <button type="submit"
+                style="padding: 10px 20px;  background-color: #d0696d;  border: none; border-radius: 4px;">Submit</button>
+            <button type="reset"
+                style="padding: 10px 20px;  background-color: #6c757d;  border: none; border-radius: 4px;">Reset</button>
+        </div>
+
+    </form>
+    <p id="copy" style="text-align: right;">Copyright@ <mark
+            style="background: none; color: aquamarine;">sampleForms.com</mark>
+    </p>
+</body>
+
+</html>

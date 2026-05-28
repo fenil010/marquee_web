@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Amazon Navbar</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            overflow-x: hidden;
+        }
+
+        #navbar-top {
+            width: 100%;
+            background-color: #131921;
+            padding: 10px 15px;
+        }
+
+        #top-nav {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+        #logo img {
+            height: 40px;
+            width: auto;
+            display: block;
+        }
+        #location {
+            color: white;
+            min-width: 150px;
+        }
+        #location p {
+            font-size: 12px;
+            color: #cccccc;
+        }
+        #location h5 {
+            font-size: 14px;
+        }
+        #search-bar {
+            display: flex;
+            flex: 1;
+            min-width: 250px;
+            max-width: 750px;
+        }
+        #search-bar select {
+            width: 60px;
+            border: none;
+            padding: 10px;
+            background-color: #e6e6e6;
+            border-radius: 5px 0px 0px 5px;
+        }
+        #search-bar input {
+            flex: 1;
+            padding: 10px;
+            border: none;
+            outline: none;
+            font-size: 15px;
+        }
+        #search-bar button {
+            width: 60px;
+            border: none;
+            background-color: #febd69;
+            font-size: 20px;
+            cursor: pointer;
+            border-radius: 0px 5px 5px 0px;
+        }
+        #right-section {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            color: white;
+            flex-wrap: wrap;
+        }
+        .nav-box span {
+            font-size: 12px;
+        }
+        .nav-box h5 {
+            font-size: 14px;
+        }
+        #cart {
+            font-size: 28px;
+        }
+        #navbar-bottom {
+            width: 100%;
+            background-color: #232f3e;
+            overflow-x: auto;
+        }
+        #bottom-nav {
+            display: flex;
+            align-items: center;
+            gap: 25px;
+            padding: 12px 20px;
+            min-width: max-content;
+            color: white;
+            white-space: nowrap;
+        }
+        #bottom-nav span,
+        #bottom-nav b {
+            cursor: pointer;
+            font-size: 15px;
+        }
+        @media(max-width: 768px) {
+
+            #top-nav {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            #search-bar {
+                width: 100%;
+                max-width: 100%;
+            }
+
+            #right-section {
+                justify-content: space-between;
+            }
+
+            #location {
+                margin-top: 5px;
+            }
+        }
+    </style>
+
+</head>
+<body>
+    <header>
+        <section id="navbar-top">
+
+            <nav id="top-nav">
+                <div id="logo">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg"
+                        alt="Amazon Logo">
+                </div>
+                <div id="location">
+                    <p>Delivering to Vadodara 390001</p>
+                    <h5>Update Location</h5>
+                </div>
+                <div id="search-bar">
+                    <select>
+                        <option>All</option>
+                    </select>
+                    <input type="text" placeholder="Search Amazon.in">
+                    <button>🔍</button>
+                </div>
+                <div id="right-section">
+                    <div class="nav-box">
+                        <span>Hello, sign in</span>
+                        <h5>Account & Lists</h5>
+                    </div>
+                    <div class="nav-box">
+                        <span>Returns</span>
+                        <h5>& Orders</h5>
+                    </div>
+                    <div id="cart">
+                        🛒
+                    </div>
+                </div
+            </nav>
+        </section>
+        <section id="navbar-bottom">
+
+            <nav id="bottom-nav">
+
+                <b>☰ All</b>
+                <span>Fresh</span>
+                <span>MX Player</span>
+                <span>Sell</span>
+                <span>Bestsellers</span>
+                <span>Mobiles</span>
+                <span>Today's Deals</span>
+                <span>Prime</span>
+                <span>Amazon Pay</span>
+                <span>Electronics</span>
+                <span>Fashion</span>
+                <span>Home & Kitchen</span>
+            </nav>
+        </section>
+    </header>
+</body>
+</html>
