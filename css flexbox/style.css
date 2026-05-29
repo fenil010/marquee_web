@@ -1,134 +1,162 @@
-:root {
-    --blue: #0b5fff;
-    --yellow: #ffd200;
-    --text: #111827;
-    --muted: #6b7280;
-    --surface: #ffffff;
-    --surface-muted: #f2f4f7;
-    --shadow: 0 18px 32px rgba(15, 23, 42, 0.08);
-}
-
-* {
+*{
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: "Manrope", "Segoe UI", sans-serif;
+    font-family: Arial, sans-serif;
 }
 
-html,
-body {
-    width: 100%;
-    min-height: 100vh;
+body{
+    background: #f3f3f3;
 }
 
-body {
-    background: linear-gradient(135deg, #f7f8fb 0%, #eef1f7 100%);
-    color: var(--text);
+/* MAIN CONTAINER */
+
+.container{
+    width: 80%;
+    margin: 30px auto;
 }
 
-.topbar {
-    background: var(--surface);
-    box-shadow: var(--shadow);
-}
+/* TOP BAR */
 
-.topbar__inner {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 14px 24px;
+.top-bar{
     display: flex;
-    align-items: center;
     justify-content: space-between;
-    gap: 16px;
+    align-items: center;
+    margin-bottom: 20px;
 }
 
-.topbar__left {
+.buttons{
     display: flex;
-    align-items: center;
+    gap: 15px;
+}
+
+.btn{
+    border: none;
+    padding: 15px 45px;
+    border-radius: 14px;
+    background: #d8d5d5;
+    font-size: 18px;
+    cursor: pointer;
+}
+
+.active{
+    background: #ffe100;
+}
+
+.location{
+    font-size: 20px;
+    font-weight: 500;
+}
+
+/* SEARCH AREA */
+
+.search-container{
+    background: #d0caca;
+    padding: 8px;
+    border-radius: 12px;
+
+    display: flex;
+    gap: 10px;
+
+    margin-bottom: 15px;
+}
+
+.search-left{
+    flex: 3;
+    height: 38px;
+    background: #7ff2d0;
+}
+
+.search-right{
+    flex: 1;
+    height: 38px;
+    background: #89eb61;
+}
+
+/* BOX SECTION */
+
+.boxes{
+    display: flex;
+    border-top: 5px solid #a8ff00;
+    border-bottom: 5px solid #a8ff00;
+
+    margin-bottom: 25px;
+}
+
+.box{
+    width: 90px;
+    height: 90px;
+
+    border-right: 5px solid #a8ff00;
+
+    background: #ececec;
+
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+
+    padding-top: 12px;
+
+    font-size: 16px;
+}
+
+.box:first-child{
+    border-left: 5px solid #a8ff00;
+}
+
+/* BANNERS */
+
+.banner-container{
+    background: #d3d0d0;
+
+    padding: 12px;
+
+    display: flex;
     gap: 12px;
 }
 
-.pill {
-    display: inline-flex;
-    align-items: center;
-    gap: 10px;
-    padding: 10px 18px;
-    border-radius: 999px;
-    text-decoration: none;
-    font-weight: 700;
-    font-size: 15px;
-    letter-spacing: 0.2px;
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
+.banner{
+    height: 170px;
 
-.pill:hover {
-    transform: translateY(-1px);
-    box-shadow: 0 10px 18px rgba(15, 23, 42, 0.12);
-}
+    border-radius: 15px;
 
-.pill--brand {
-    background: var(--yellow);
-    color: var(--blue);
-}
-
-.brand-icon {
-    width: 22px;
-    height: 22px;
-    display: grid;
-    place-items: center;
-    border-radius: 8px;
-    background: rgba(11, 95, 255, 0.12);
-    font-size: 16px;
-    font-weight: 800;
-    text-transform: lowercase;
-}
-
-.pill--travel {
-    background: var(--surface-muted);
-    color: #1f2933;
-}
-
-.pill__icon {
-    width: 18px;
-    height: 18px;
-    fill: #f05a4f;
-}
-
-.topbar__right {
     display: flex;
+    justify-content: center;
     align-items: center;
+
+    font-size: 20px;
 }
 
-.location {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    flex-wrap: wrap;
-    font-size: 14px;
-    font-weight: 600;
+.banner1{
+    flex: 2;
+    background: #49dfe0;
 }
 
-.location__icon {
-    width: 16px;
-    height: 16px;
-    fill: #111827;
+.banner2{
+    flex: 2;
+    background: #df1f37;
+    color: black;
 }
 
-.location__text {
-    color: var(--muted);
+.banner3{
+    flex: 1;
+    background: #e9e8cf;
 }
 
-.location__link {
-    color: var(--blue);
-    text-decoration: none;
-    font-weight: 700;
-    white-space: nowrap;
-}
+/* RESPONSIVE */
 
-.location__link:hover {
-    text-decoration: underline;
-}
+@media(max-width: 900px){
 
-.location__arrow {
-    font-weight: 700;
-}
+    .top-bar{
+        flex-direction: column;
+        gap: 15px;
+    }
 
+    .banner-container{
+        flex-direction: column;
+    }
+
+    .boxes{
+        flex-wrap: wrap;
+    }
+}
