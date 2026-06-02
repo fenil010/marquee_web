@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Morphing Particle Shapes</title>
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden;
+            background-color: #050505;
+        }
+        canvas {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+
+    <script>
+        // 1. SCENE SETUP
+        const scene = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+        const renderer = new THREE.WebGLRenderer({ antialias: true });
+        
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        document.body.appendChild(renderer.domElement);
+
+        // 2. CREATE PARTICLES & SHAPES
+        const particleCount = 4000;
+        const geometry = new THREE.BufferGeometry();
+        
+        // Arrays to hold the target coordinates for each shape
+        const spherePositions = new Float32Array(particleCount * 3);
+        const planePositions = new Float32Array(particleCount * 3);
+        const applePositions = new Float32Array(particleCount * 3);
+        
+        // Arrays for current visual position and the current morphing base
+        const positions = new Float32Array(particleCount * 3);
+        const basePositions = new Float32Array(particleCount * 3); 
+
+        const radius = 6;
+        const phi = Math.PI * (3 - Math.sqrt(5)); 
+        const gridSize = Math.ceil(Math.sqrt(particleCount));
+
+        // Generate the coordinates for all 3 shapes
+        for (let i = 0; i < particleCount; i++) {
+            // --- SHAPE 1: SPHERE (Earth Base) ---
+            const y = 1 - (i / (particleCount - 1)) * 2; 
+            const radiusAtY = Math.sqrt(1 - y * y); 
+            const theta = phi * i; 
+
+            const sx = Math.cos(theta) * radiusAtY * radius;
+            const sy = y * radius;
+            const sz = Math.sin(theta) * radiusAtY * radius;
+
+            spherePositions[i * 3] = sx;
+            spherePositions[i * 3 + 1] = sy;
+            spherePositions[i * 3 + 2] = sz;
+
+            // Initialize current positions to the sphere
+            positions[i*3] = sx; positions[i*3+1] = sy; positions[i*3+2] = sz;
+            basePositions[i*3] = sx; basePositions[i*3+1] = sy; basePositions[i*3+2] = sz;
+
+            // --- SHAPE 2: PLANE ---
+            const row = Math.floor(i / gridSize);
+            const col = i % gridSize;
+            planePositions[i * 3] = (col / gridSize - 0.5) * 16;
+            planePositions[i * 3 + 1] = (row / gridSize - 0.5) * 16;
+            planePositions[i * 3 + 2] = 0;
+
+            // --- SHAPE 3: APPLE ---
+            // We use spherical coordinates but distort the Y-axis to create dimples
+            const v = Math.acos(y); // 0 to PI (latitude)
+            const u = theta; // longitude
+            
+            const appleRadius = radius * 0.85;
+            applePositions[i * 3] = Math.cos(u) * Math.sin(v) * appleRadius;
+            // The trick for the apple shape: subtracting cos(v*2) creates the top/bottom dimples
+            applePositions[i * 3 + 1] = (Math.cos(v) * appleRadius) - (Math.cos(v * 2) * 1.5); 
+            applePositions[i * 3 + 2] = Math.sin(u) * Math.sin(v) * appleRadius;
+        }
+
+        geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+
+        const material = new THREE.PointsMaterial({
+            color: 0xffffff,
+            size: 0.05,
+            transparent: true,
+            opacity: 0.8
+        });
+
+        const particles = new THREE.Points(geometry, material);
+        scene.add(particles);
+        camera.position.z = 14;
+
+        // 3. MORPHING LOGIC
+        const shapes = [spherePositions, planePositions, applePositions];
+        let currentShapeIndex = 0;
+
+        // Change shape every 4 seconds
+        setInterval(() => {
+            currentShapeIndex = (currentShapeIndex + 1) % shapes.length;
+        }, 4000);
+
+        // 4. MOUSE INTERACTION SETUP
+        const mouse = new THREE.Vector2();
+        const raycaster = new THREE.Raycaster();
+        
+        window.addEventListener('mousemove', (event) => {
+            mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
+            mouse.y = -(event.clientY / window.innerHeight) * 2 + 1;
+        });
+
+        window.addEventListener('resize', () => {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+        });
+
+        // 5. ANIMATION LOOP
+        function animate() {
+            requestAnimationFrame(animate);
+
+            particles.rotation.y += 0.002;
+            particles.rotation.x += 0.0005;
+
+            raycaster.setFromCamera(mouse, camera);
+
+            const positionsAttribute = geometry.getAttribute('position');
+            const posArray = positionsAttribute.array;
+            const targetShape = shapes[currentShapeIndex];
+
+            // MUCH SMALLER interaction radius
+            const interactRadius = 0.7; 
+            const repelStrength = 0.5;
+
+            for (let i = 0; i < particleCount; i++) {
+                // 1. Smoothly morph the "Base Position" toward the current target shape
+                basePositions[i * 3] += (targetShape[i * 3] - basePositions[i * 3]) * 0.03;
+                basePositions[i * 3 + 1] += (targetShape[i * 3 + 1] - basePositions[i * 3 + 1]) * 0.03;
+                basePositions[i * 3 + 2] += (targetShape[i * 3 + 2] - basePositions[i * 3 + 2]) * 0.03;
+
+                // 2. Handle Mouse Hover Repel
+                const bx = basePositions[i * 3];
+                const by = basePositions[i * 3 + 1];
+                const bz = basePositions[i * 3 + 2];
+
+                const particlePos = new THREE.Vector3(bx, by, bz);
+                particlePos.applyMatrix4(particles.matrixWorld);
+
+                const distanceToMouseRay = raycaster.ray.distanceToPoint(particlePos);
+
+                if (distanceToMouseRay < interactRadius) {
+                    // Scatter away from cursor
+                    posArray[i * 3] += (Math.random() - 0.5) * repelStrength;
+                    posArray[i * 3 + 1] += (Math.random() - 0.5) * repelStrength;
+                    posArray[i * 3 + 2] += (Math.random() - 0.5) * repelStrength;
+                } else {
+                    // Snap back to the (currently morphing) base position
+                    posArray[i * 3] += (bx - posArray[i * 3]) * 0.15;
+                    posArray[i * 3 + 1] += (by - posArray[i * 3 + 1]) * 0.15;
+                    posArray[i * 3 + 2] += (bz - posArray[i * 3 + 2]) * 0.15;
+                }
+            }
+
+            positionsAttribute.needsUpdate = true;
+            renderer.render(scene, camera);
+        }
+
+        animate();
+    </script>
+</body>
+</html>

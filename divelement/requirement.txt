@@ -10,7 +10,7 @@ Where and How to use: It's used directly within the opening tag of element using
 
 ---------------------------------------------------------------------------
 
-2. Internal CSS
+2. Internal CSSw
 
 Internal CSS is defined within a "style" tag in the head section of an
 keep styles separate from content
