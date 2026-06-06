@@ -1,0 +1,53 @@
+body, html {
+        margin: 0;
+        padding: 0;
+        height: 100vh;
+        box-sizing: border-box;
+        background-color: #f0f0f0;
+      }
+
+      .grid-container {
+        display: grid;
+        height: 100vh;
+        /* Define the grid columns and rows */
+        grid-template-columns: 200px 1fr 200px;
+        grid-template-rows: 100px 1fr 100px;
+        
+        /* Define the template areas visually matching the layout */
+        grid-template-areas:
+          "header header header"
+          "nav content sidebar"
+          "footer footer footer";
+        
+        /* Gap for borders */
+        gap: 2px;
+        background-color: #b5c4d6; /* Light border color between elements */
+      }
+
+      .grid-items {
+        background-color: #3b7bbf; /* Blue color matching the image */
+        color: white;
+        font-family: Arial, sans-serif;
+        padding: 10px;
+      }
+
+      .header {
+        grid-area: header;
+      }
+
+      .nav {
+        grid-area: nav;
+      }
+
+      .content {
+        grid-area: content;
+      }
+      
+
+      .sidebar {
+        grid-area: sidebar;
+      }
+
+      .footer {
+        grid-area: footer;
+      }
