@@ -9,22 +9,42 @@
   <ul id="list">
     <li class="items">Items 1</li>
     <li class="items">Items 2</li>
-    <li class="items">Items 3</li>
+    <li class="items" id="item3">Items 3</li>
+    <li class="items">Items 4</li>
+    
   </ul>
 
+  <input type="text" placeholder="enter your nam">
+
   <script>
-    let newListItem = document.createElement('li');
-    newListItem.innerText = 'Items 4';
+    // let newListItem = document.createElement('li');
+    // newListItem.innerText = 'Items 4';
     let list = document.getElementById('list');
-    list.appendChild(newListItem);
+    // list.appendChild(newListItem);
 
     let arr1 = ['apple','mango','banana','grapes'];
 
     arr1.forEach((element) => {
       let newListItem = document.createElement('li');
       newListItem.innerText = element;
-      list.appendChild(newListItem);
+      list.insertAdjacentElement('afterbegin',newListItem);
     });
+
+    // arr1.forEach((element) => {
+    //   let newListItem = document.createElement('li');
+    //   newListItem.innerText = element;
+    //   list.prepend(newListItem);
+    // });
+
+    // let list1 = document.getElementById('item3');
+    //  let newListItem = document.createElement('li');
+
+    //   newListItem.innerText = "new item";
+    //   list1.insertBefore(newListItem,list1.lastElementChild);
+
+
+
+
   </script>
 </body>
 </html>
