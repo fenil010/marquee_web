@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .container{
+            display:flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center ;
+        }
+        .main {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            margin-top: 50px;
+            height: 200px;
+            width:400px;
+            border: 3px solid #4a4a4a;
+        }
+        
+        .bulb {
+            width: 100px;
+            height: 100px;
+            background-color: gray;
+            border-radius: 50%;
+            margin-bottom: 20px;
+        }
+
+        button {
+            padding: 10px 20px;
+            margin: 5px;
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+    <div class="main">
+        <div class="bulb">
+        </div>
+    </div>
+    <div class="btn">
+        <button id="on">Turn On</button>
+        <button id="off">Turn Off</button>
+    </div>
+    </div>
+    <script>
+        const bulb = document.querySelector('.bulb');
+        const onBtn = document.getElementById('on');
+        const offBtn = document.getElementById('off');
+
+        onBtn.addEventListener('click', function() {
+            bulb.style.cssText = 'background-color: yellow; box-shadow: 0 0 20px yellow ';
+        });
+
+        offBtn.addEventListener('click', function() {
+            bulb.style.cssText = 'background-color: gray';
+        });
+    </script>
+</body>
+</html>

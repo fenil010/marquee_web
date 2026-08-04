@@ -1,0 +1,234 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Products</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: Arial, Helvetica, sans-serif;
+      }
+
+      body {
+        background-color: #f5f5f5;
+        padding: 30px;
+      }
+
+      .container {
+        width: 80%;
+        max-width: 900px;
+        margin: auto;
+      }
+
+      .card {
+        background: white;
+        border: 1px solid #ddd;
+        border-radius: 6px;
+        padding: 20px;
+        margin-bottom: 25px;
+      }
+
+      h2 {
+        margin-bottom: 20px;
+        color: #333;
+      }
+
+      .form-group {
+        margin-bottom: 15px;
+      }
+
+      label {
+        display: inline-block;
+        width: 120px;
+        font-weight: bold;
+      }
+
+      select,
+      input {
+        width: 250px;
+        padding: 8px;
+        border: 1px solid #bbb;
+        border-radius: 4px;
+      }
+
+      input:focus,
+      select:focus {
+        outline: none;
+        border-color: steelblue;
+      }
+
+      button {
+        padding: 9px 18px;
+        background: steelblue;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+      }
+
+      button:hover {
+        background: #346d9c;
+      }
+
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 10px;
+      }
+
+      th {
+        background: #444;
+        color: white;
+      }
+
+      th,
+      td {
+        border: 1px solid #ccc;
+        padding: 10px;
+        text-align: center;
+      }
+
+      tr:nth-child(even) {
+        background: #f8f8f8;
+      }
+
+      button {
+        background: orangered;
+        color: white;
+        border: none;
+        padding: 6px 12px;
+        cursor: pointer;
+        border-radius: 4px;
+      }
+
+      button:hover {
+        background: red;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <!-- Form  -->
+      <div class="card">
+        <h2>Add Product</h2>
+
+        <form id="form">
+          <div class="form-group">
+            <label>Product Name</label>
+            <input required type="text" name="name" />
+          </div>
+
+          <div class="form-group">
+            <label for="category">Category</label>
+            <select name="category" id="category" required>
+              <option value="">-- Select Category --</option>
+              <option value="Electronics">Electronics</option>
+              <option value="Clothing">Clothing</option>
+              <option value="Groceries">Groceries</option>
+              <option value="Books">Books</option>
+              <option value="Furniture">Furniture</option>
+              <option value="Sports">Sports</option>
+              <option value="Beauty">Beauty & Personal Care</option>
+              <option value="Toys">Toys</option>
+              <option value="Stationery">Stationery</option>
+              <option value="Home & Kitchen">Home & Kitchen</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label>Price</label>
+            <input required type="number" name="price" />
+          </div>
+
+          <div class="form-group">
+            <label>Quantity</label>
+            <input required type="number" name="quanity" />
+          </div>
+
+          <button type="submit" style="display: none">Add Product</button>
+          <span style="color: red; font-weight: 700">(Click `Enter`)</span>
+        </form>
+      </div>
+
+      <!-- Table -->
+      <div class="card">
+        <h2>Products</h2>
+
+        <table id="table">
+          <thead>
+            <tr>
+              <th>Sr.</th>
+              <th>Name</th>
+              <th>Category</th>
+              <th>Price</th>
+              <th>Quantity</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <!-- Rows will be added by JavaScript -->
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <script>
+      const form = document.getElementById("form");
+      const table = document.querySelector("#table tbody");
+
+      let products = JSON.parse(localStorage.getItem("products")) || [];
+
+      displayProduct();
+
+      form.addEventListener("submit", function (e) {
+        e.preventDefault();
+
+        let product = {
+          name: form.name.value,
+          category: form.category.value,
+          price: form.price.value,
+          quantity: form.quanity.value,
+        };
+
+        products.push(product);
+
+        localStorage.setItem("products", JSON.stringify(products));
+
+        displayProduct();
+        form.reset();
+      });
+
+      function displayProduct() {
+        table.innerHTML = "";
+
+        products.forEach((p, index) => {
+          let row = table.insertRow();
+
+          row.insertCell(0).innerHTML = index + 1;
+          row.insertCell(1).innerHTML = p.name;
+          row.insertCell(2).innerHTML = p.category;
+          row.insertCell(3).innerHTML = p.price;
+          row.insertCell(4).innerHTML = p.quantity;
+
+          let actionCell = row.insertCell(5);
+
+          let btn = document.createElement("button");
+          btn.innerHTML = "Delete";
+
+          btn.addEventListener("click", function () {
+            products.splice(index, 1);
+            localStorage.setItem("products", JSON.stringify(products));
+            displayProduct();
+          });
+
+          actionCell.appendChild(btn);
+        });
+      }
+    </script>
+  </body>
+</html>

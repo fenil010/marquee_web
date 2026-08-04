@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+   <style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: Arial, sans-serif;
+    }
+
+
+    body {
+        background: #f2f2f2;
+        padding: 40px;
+    }
+
+
+    /* Main container */
+
+    .container {
+        max-width: 1400px;
+        margin: auto;
+    }
+
+
+    .container h1 {
+        text-align: center;
+        margin-bottom: 40px;
+        font-size: 40px;
+        color: #333;
+    }
+
+
+    /* Product Grid */
+
+    .list {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 25px;
+    }
+
+
+    /* Product Card */
+
+    .card {
+        background: white;
+        border-radius: 15px;
+        overflow: hidden;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.15);
+        transition: 0.3s ease;
+    }
+
+    /* Product Details */
+
+    .product-details {
+        padding: 20px;
+    }
+
+
+    .product-details h2 {
+        font-size: 22px;
+        color: #333;
+        margin-bottom: 12px;
+    }
+
+
+    /* Brand */
+
+    .brand {
+        color: #666;
+        font-size: 16px;
+        margin-bottom: 15px;
+    }
+
+
+    /* Price */
+
+    .price {
+        font-size: 25px;
+        font-weight: bold;
+        color: #e67e22;
+        margin-bottom: 15px;
+    }
+
+
+    /* Quantity */
+
+    .quantity {
+        color: green;
+        font-size: 16px;
+        margin-bottom: 20px;
+    }
+
+
+   </style>
+</head>
+<body>
+    <div class="container">
+        <div class="list">
+
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>Quote:</h1>
+    <p id="display"></p>
+    <button id="btn">Generate Number</button>
+
+    <script>
+      const quotes = [
+        {
+          quote:
+            "The best way to get started is to quit talking and begin doing",
+          createdBy: "Walt Disney",
+        },
+        {
+          quote:
+            "Succes is not final, failure is not fatal: it is the courage to continue that counts",
+          createdBy: "winton churchill",
+        },
+        {
+          quote: "Dont watch the clock; do what it does. Keep going",
+          createdBy: "sam levenson",
+        },
+        {
+          quote: "Draem big and dare to fail",
+          createdBy: "norman vaughan",
+        },
+        {
+          quote: "The future depends on what you do today",
+          createdBy: "mahatma gandhi",
+        },
+      ];
+
+      const btn = document.getElementById("btn");
+      const quoteDisplay = document.getElementById("display");
+
+      btn.addEventListener("click", function () {
+        let random = Math.floor(Math.random() * quotes.length);
+        quoteDisplay.innerText = quotes[random].quote;
+      });
+      quoteDisplay.style.cssText =
+        "font-size: 20px; font-weight: bold; background-color: cyan";
+    </script>
+  </body>
+</html>
