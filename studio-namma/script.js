@@ -1,7 +1,57 @@
 const main = document.querySelector("main");
 const video = document.querySelector(".video");
+const modechange = document.getElementById("mode");
+
+modechange.addEventListener('click',
+    function() {
+        document.body.classList.toggle('dark-mode');
+        if (document.body.classList.contains('dark-mode')) {
+            modechange.textContent = 'LIGHT MODE';
+            const body = document.querySelector('body');
+            body.style.backgroundColor = '#000';
+            body.style.color = '#fff';
+            document.head.appendChild(style);
+        }
+        else {
+            modechange.textContent = 'DARK MODE';
+            const body = document.querySelector('body');
+            body.style.backgroundColor = '#fff';
+            body.style.color = '#000';
+            
+            document.head.appendChild(style);
+        }
+    }
+
+)
 
 main.addEventListener("mousemove", (e) => {
-    video.style.left = (e.clientX - 150) + "px"; 
-    video.style.top = (e.clientY - 100) + "px"; 
+    document.getElementById("main-video").style.visibility = "visible"
+    video.style.left = (e.clientX ) + "px";
+    video.style.top = (e.clientY ) + "px";
+    video.style.opacity = "1";
+
+
+   
+
 });
+
+main.addEventListener("mouseleave", (e) => {
+    video.style.opacity = "0";
+
+}
+)
+
+// const main2 = document.querySelector("main");
+// const video1 = document.getElementById("intro-video");
+
+// if (main2 && video1) {
+//     video1.style.visibility = "visible";
+//     video1.addEventListener("ended", () => {
+//     video1.classList.add("hide"); 
+//         setTimeout(() => {
+//             video1.remove();
+//         }, 800);
+
+//     });
+// }
+
