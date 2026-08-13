@@ -1,6 +1,7 @@
 const main = document.querySelector("main");
 const video = document.querySelector(".video");
 const modechange = document.getElementById("mode");
+const overlayitems= document.querySelectorAll(".overlay-items");
 
 modechange.addEventListener('click',
     function() {
@@ -55,3 +56,14 @@ main.addEventListener("mouseleave", (e) => {
 //     });
 // }
 
+overlayitems.forEach(item=>{
+    item.addEventListener("mouseenter",()=>
+    {
+        item.firstElementChild.style.width='180px'
+    })
+
+        item.addEventListener("mouseleave",()=>
+    {
+        item.firstElementChild.style.width='0px'
+    })
+})
